@@ -121,7 +121,6 @@ export default {
         //调用设置新数据的函数。
         this.setNewData(this, res.data, trIndex, record._level)
       }
-      console.log(this.data)
     },
     // 显示层级关系的空格和图标
     spaceIconShow(index) {
