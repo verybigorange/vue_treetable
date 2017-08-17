@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <tree-grid :columns="columns" :tree-structure="true" :data-source="dataSource"></tree-grid>
+    <tree-grid :columns="columns" :tree-structure="true" :data-source="dataSource" :buttons="buttons"></tree-grid>
   </div>
 </template>
 
@@ -19,6 +19,8 @@ export default {
   name: 'hello',
   data () {
     return {
+
+      // 列字段
       columns: [
           {
             text: '城市',
@@ -34,6 +36,26 @@ export default {
           }
         ],
         dataSource: [],
+        // 操作按钮
+        buttons:[
+          {
+            text:"删除",
+            type:"danger",
+            event:function(currentTrData,index,dataArr,scope){
+               //获取需要删除的子元素个数 
+              let len = scope._self.DelLen(currentTrData);
+              dataArr.splice(index,1+len);
+            }
+          },{
+            text:"编辑",
+            type:"default",
+            event:function(currentTrData,index,data){}
+          },{
+            text:"添加下级树结构",
+            type:"success",
+            event:function(currentTrData,index,data){}
+          }
+        ]
     }
   },
   components: {
