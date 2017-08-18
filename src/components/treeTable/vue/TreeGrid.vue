@@ -111,16 +111,18 @@ export default {
       let me = this
       let record = me.data[trIndex]   //拿到被点击当前行的数据
 
-      record._expanded = !record._expanded
-
       //展开的时候才去请求新数据
-      if(!record._expanded){
+      if(record._expanded){
           // 测试用的请求
         let res = await axios.post('/api' + record.url, { "id": record.id });
-
         //调用设置新数据的函数。
         this.setNewData(this, res.data, trIndex, record._level)
+        record._expanded = !record._expanded
+      }else{
+        record._expanded = !record._expanded
       }
+
+      
     },
     // 显示层级关系的空格和图标
     spaceIconShow(index) {
